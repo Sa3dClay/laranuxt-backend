@@ -10,6 +10,11 @@ use App\Http\Resources\Topic as TopicResource;
 
 class TopicController extends Controller
 {
+    public function index() {
+        $topics = Topic::latestFirst()->get();
+        return TopicResource::collection($topics);
+    }
+
     public function store(TopicCreateRequest $request) {
         $topic = new Topic;
         $topic->title = $request->title;

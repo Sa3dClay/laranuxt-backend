@@ -10,4 +10,5 @@ Route::get('user', 'App\Http\Controllers\AuthController@user');
 
 Route::prefix('topics')->group(function () {
     Route::post('/', 'App\Http\Controllers\TopicController@store')->middleware('auth:api');
+    Route::get('/', 'App\Http\Controllers\TopicController@index');
 });
