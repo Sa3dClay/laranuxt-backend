@@ -13,4 +13,8 @@ Route::prefix('topics')->group(function () {
     Route::post('/', 'App\Http\Controllers\TopicController@store')->middleware('auth:api');
     Route::patch('/{topic}', 'App\Http\Controllers\TopicController@update')->middleware('auth:api');
     Route::delete('/{topic}', 'App\Http\Controllers\TopicController@destroy')->middleware('auth:api');
+
+    Route::prefix('/{topic}/posts')->group(function () {
+        Route::post('/', 'App\Http\Controllers\PostController@store')->middleware('auth:api');
+    });
 });

@@ -13,7 +13,6 @@ class TopicController extends Controller
 {
     public function index() {
         $topics = Topic::latestFirst()->get();
-
         return TopicResource::collection($topics);
     }
 
