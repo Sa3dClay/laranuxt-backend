@@ -20,5 +20,11 @@ Route::prefix('topics')->group(function () {
         Route::post('/', 'App\Http\Controllers\PostController@store')->middleware('auth:api');
         Route::patch('/{post}', 'App\Http\Controllers\PostController@update')->middleware('auth:api');
         Route::delete('/{post}', 'App\Http\Controllers\PostController@destroy')->middleware('auth:api');
+
+        // Likes
+        Route::prefix('/{post}/likes')->group(function () {
+            Route::post('/', 'App\Http\Controllers\PostLikeController@store')->middleware('auth:api');
+            Route::delete('/', 'App\Http\Controllers\PostLikeController@dislike')->middleware('auth:api');
+        });
     });
 });
