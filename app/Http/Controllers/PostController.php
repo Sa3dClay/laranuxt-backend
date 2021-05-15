@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Topic;
+use App\Models\Like;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostCreateRequest;
 use App\Http\Requests\PostUpdateRequest;
@@ -31,6 +32,10 @@ class PostController extends Controller
 
     public function destroy(Topic $topic, Post $post) {
         $this->authorize('destroy', $post);
+
+        // delete likes on this post
+        Like::where('likeable_id', $post->id)
+            ->delete();
 
         $post->delete();
 
